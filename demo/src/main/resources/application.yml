@@ -1,0 +1,21 @@
+debug: false
+server:
+  port: 8080
+spring:
+  application:
+    name: demo
+
+milvus:
+  host: localhost
+  port: 19530
+  database: default
+  collection:
+    dimension: 768
+
+ollama:
+  host: http://localhost
+  port: 11434
+  model: nomic-embed-text
+
+file:
+  upload-dir: uploads
