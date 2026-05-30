@@ -46,7 +46,7 @@ List<Document> documentList=vectorStore.similaritySearch(SearchRequest.builder()
         topK(2).query(question).build());
 
 
-      String context = documentList.stream().filter(e->e.getScore()>0.5)
+      String context = documentList.stream().filter(f->f.getScore()!=null ).filter(e->e.getScore()>0.5)
               .map(Document::getText)
               .collect(Collectors.joining("\n\n"));
     ChatResponse response = chatModel.call(
