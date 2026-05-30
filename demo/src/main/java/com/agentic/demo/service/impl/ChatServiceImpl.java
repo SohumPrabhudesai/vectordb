@@ -36,36 +36,16 @@ public class ChatServiceImpl implements ChatService {
   }
 
   @Override
-  public String getAnswer(String question){
+  public String getAnswer(String question,Double temperature){
 
     ChatResponse response = chatModel.call(
             new Prompt(
-                    "Generate the names of 5 famous pirates.",
+                    question,
                     OllamaChatOptions.builder()
                             .model(OllamaModel.MISTRAL)
-                            .temperature(0.4)
+                            .temperature(temperature)
                             .build()
             ));
-   /* List<Document> documentList =
-            vectorStore.similaritySearch(SearchRequest.builder().query(question).topK(5).build());
-    List<String> contentList = documentList.stream().map(Document::getFormattedContent).toList();
-
-    BeanOutputConverter<String> gameWeekBeanOutputConverter =
-            new BeanOutputConverter<>(String.class);
-    String format = gameWeekBeanOutputConverter.getFormat();
-    PromptTemplate promptTemplate = new PromptTemplate("");
-    Prompt prompt =
-            promptTemplate.create(
-                    Map.of(
-                            "gameweekNumber",
-                            question,
-                            "format",
-                            format,
-                            "documents",
-                            String.join("\n", contentList)));
-    // return chatClient.prompt(prompt).user(question).stream().content();
-    ChatResponse chatResponse = chatModel.call(prompt);*/
-    //String output = Objects.requireNonNull(chatResponse.getResult().getOutput().getText());
     return response.getResults().toString();
   }
 }

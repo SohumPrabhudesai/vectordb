@@ -12,8 +12,8 @@ public class ChatController {
     public ChatController(ChatService chatService) {
         this.chatService = chatService;
     }
-    @GetMapping("/gameweek/results")
-    public String beginChat(@RequestParam(value = "question") String question) {
-        return chatService.getAnswer(question);
+    @GetMapping("/ask/questions")
+    public String beginChat(@RequestParam(value = "question") String question,@RequestParam(value = "temperature")Double temperature) {
+        return chatService.getAnswer(question,temperature);
     }
 }
