@@ -33,7 +33,6 @@ public class VectorDBController {
     private final EmbeddingService embeddingService;
     private final MilvusService milvusService;
     private final PdfChunker pdfChunker;
-
     @Value("${file.upload-dir:uploads}")
     private String uploadDir;
 
@@ -79,6 +78,7 @@ public class VectorDBController {
             @PathVariable String collectionName,
             @RequestBody SearchRequest request) throws Exception {
 
+
         //create embeddings from text
         List<Float> queryVector = embeddingService.embedText(request.getQueryText());
         List<SearchResponse> content = new ArrayList<>();
@@ -111,10 +111,6 @@ public class VectorDBController {
             System.out.println("Content: " + contentField);
             System.out.println("-------------------");
         }
-
-
-
-
-        return ResponseEntity.ok(content);
+ return ResponseEntity.ok(content);
     }
 }

@@ -2,8 +2,21 @@ debug: false
 server:
   port: 8080
 spring:
-  application:
-    name: demo
+  ai:
+    vectorstore:
+      milvus:
+        host: localhost
+        port: 19530
+        databaseName: default
+        collectionName: documents
+        embeddingDimension: 768
+        indexType: IVF_FLAT
+        metricType: COSINE
+        initialize-schema: true
+    ollama:
+      embedding:
+        options:
+          model: nomic-embed-text
 
 milvus:
   host: localhost
@@ -11,6 +24,7 @@ milvus:
   database: default
   collection:
     dimension: 768
+
 
 ollama:
   host: http://localhost
