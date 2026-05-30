@@ -1,6 +1,7 @@
 package com.agentic.demo.service.impl;
 
 import com.agentic.demo.service.ChatService;
+import org.apache.tika.utils.StringUtils;
 import org.jspecify.annotations.NonNull;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -43,11 +44,13 @@ public class ChatServiceImpl implements ChatService {
 
 List<Document> documentList=vectorStore.similaritySearch(SearchRequest.builder().
         topK(2).query(question).build());
-      String context = documentList.stream()
+
+
+      String context = documentList.stream().filter(e->e.getScore()>0.5)
               .map(Document::getText)
               .collect(Collectors.joining("\n\n"));
     ChatResponse response = chatModel.call(
-            new Prompt( "Here is some context that might be useful to answer the question:\n" + context + "\n\nAnswer the following question based on the above context:\n" +
+            new Prompt( StringUtils.isEmpty(context) ?"Here is some context that might be useful to answer the question:\n" + context + "\n\nAnswer the following question based on the above context:\n":"" +
                     question,
                     OllamaChatOptions.builder()
                             .model(OllamaModel.MISTRAL)
