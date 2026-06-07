@@ -1,6 +1,7 @@
-package com.agentic.demo.service;
+package com.agentic.demo.service.impl;
 
 
+import com.agentic.demo.service.EmbeddingService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import okhttp3.*;

@@ -1,9 +1,8 @@
-package com.agentic.demo.service;
+package com.agentic.demo.service.impl;
 
 import io.milvus.client.MilvusServiceClient;
 import io.milvus.grpc.DataType;
 import io.milvus.grpc.GetCollectionStatisticsResponse;
-import io.milvus.grpc.SearchResultData;
 import io.milvus.grpc.SearchResults;
 import io.milvus.param.ConnectParam;
 import io.milvus.param.IndexType;
@@ -14,8 +13,6 @@ import io.milvus.param.R;
 import io.milvus.param.dml.SearchParam;
 import io.milvus.param.index.CreateIndexParam;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

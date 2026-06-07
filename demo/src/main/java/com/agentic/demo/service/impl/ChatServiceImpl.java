@@ -3,6 +3,7 @@ package com.agentic.demo.service.impl;
 import com.agentic.demo.service.ChatService;
 import org.apache.tika.utils.StringUtils;
 import org.jspecify.annotations.NonNull;
+import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 
@@ -27,7 +28,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ChatServiceImpl implements ChatService {
-  private final OllamaChatModel chatModel;
+  private final ChatModel chatModel;
 
  private final VectorStore vectorStore;
 
